@@ -92,8 +92,19 @@
 
   .signup{text-align:center;background:radial-gradient(50% 80% at 50% 100%,rgba(110,18,22,.45),transparent 70%),var(--ink)}
   .signup .lead{margin:16px auto 0}
-  .formwrap{margin:36px auto 0;max-width:560px;background:#eff2f7;border-radius:4px;overflow:hidden}
-  .formwrap iframe{display:block;width:100%;height:520px;border:0}
+  .signform{margin:36px auto 0;max-width:460px;text-align:left;font-family:var(--sans)}
+  .signform label{display:block;font-family:var(--cinzel);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .signform input[type=email]{width:100%;box-sizing:border-box;background:transparent;border:1px solid var(--gold);color:var(--bone);font:inherit;font-size:16px;padding:14px 16px;border-radius:2px}
+  .signform input[type=email]:focus{outline:2px solid var(--blood-hi);outline-offset:2px}
+  .signform .hp{position:absolute;left:-9999px;opacity:0}
+  .signform .chk{display:flex;gap:12px;align-items:flex-start;margin:18px 0 22px;font-family:var(--sans);font-size:14px;letter-spacing:0;text-transform:none;color:var(--bone-dim)}
+  .signform .chk input{margin-top:3px;accent-color:var(--blood-hi)}
+  .signform .chk a{color:var(--bone);border-bottom:1px solid var(--line);text-decoration:none}
+  .signform .btn{width:100%;cursor:pointer;border:0}
+  .signform .btn:disabled{opacity:.6;cursor:wait}
+  .fmsg{min-height:22px;margin-top:14px;font-size:14px;text-align:center}
+  .fmsg.ok{color:var(--gold)} .fmsg.err{color:#e5776b}
+  .fnote{margin-top:6px;font-size:12px;color:var(--bone-dim);text-align:center}
 
   footer{padding:36px 0 52px;border-top:1px solid var(--line);font-family:var(--sans);font-size:13px;color:var(--bone-dim)}
   footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -115,7 +126,6 @@
     .about .two{gap:28px}
     .grid{grid-template-columns:1fr}
     .steps{gap:28px}
-    .formwrap iframe{height:680px}
   }
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -207,7 +217,33 @@
       <p class="eyebrow">1 gennaio 2027</p>
       <h2 style="margin-top:14px">Ti avvisiamo <em>noi.</em></h2>
       <p class="lead">Una mail all'apertura, poche altre fino ad allora. Niente di più.</p>
-      <div class="formwrap"><iframe src="https://87c3c96e.sibforms.com/serve/MUIFANfQ7IEQFjxwBNiB3rtA8Vz3UjwYcQRFWRrLbbpHwcTEuxrPdcQU20frMWi-u5SefKS1lgFts7umMHgzQNijFoZcfHNvm_FkVdF_nWHXPJxUVEFLKorgvvo03xsyOatx-Sa4-id2Tmk1kn-L9vyq1lrSNOWG39cBC3xJYQ716dLVuQIvtudlJ4k4XFAFK3X8PMkZmRJECDaGlQ==" title="Iscrizione ad Aglioteca" loading="lazy" frameborder="0" scrolling="no" allowfullscreen></iframe></div>
+      <form class="signform" id="signform" novalidate>
+        <label for="em">Il tuo indirizzo email</label>
+        <input id="em" name="EMAIL" type="email" placeholder="nome@esempio.it" autocomplete="email" required>
+        <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+        <input type="hidden" name="locale" value="it">
+        <label class="chk"><input type="checkbox" name="OPT_IN" id="optin" value="1" required><span>Acconsento a ricevere comunicazioni su Aglioteca e ho letto l'<a href="privacy.html">informativa privacy</a>.</span></label>
+        <button class="btn" type="submit">Avvisami all'apertura</button>
+        <p class="fmsg" id="fmsg" role="status" aria-live="polite"></p>
+        <p class="fnote">Puoi annullare l'iscrizione in qualsiasi momento dal link in ogni mail.</p>
+      </form>
+      <script>
+      (function(){
+        var f=document.getElementById('signform'),m=document.getElementById('fmsg'),b=f.querySelector('button');
+        var URL="https://87c3c96e.sibforms.com/serve/MUIFANfQ7IEQFjxwBNiB3rtA8Vz3UjwYcQRFWRrLbbpHwcTEuxrPdcQU20frMWi-u5SefKS1lgFts7umMHgzQNijFoZcfHNvm_FkVdF_nWHXPJxUVEFLKorgvvo03xsyOatx-Sa4-id2Tmk1kn-L9vyq1lrSNOWG39cBC3xJYQ716dLVuQIvtudlJ4k4XFAFK3X8PMkZmRJECDaGlQ==?isAjax=1";
+        f.addEventListener('submit',function(e){
+          e.preventDefault(); m.className='fmsg';
+          var em=f.EMAIL.value.trim();
+          if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){m.textContent='Controlla l\'indirizzo email.';m.className='fmsg err';return;}
+          if(!f.OPT_IN.checked){m.textContent='Serve il consenso per iscriverti.';m.className='fmsg err';return;}
+          b.disabled=true;
+          fetch(URL,{method:'POST',body:new FormData(f)}).then(function(r){return r.json()}).then(function(d){
+            if(d&&d.success){f.reset();m.textContent='Fatto. Ti abbiamo scritto: conferma l\'iscrizione dal link nella mail (controlla anche lo spam).';m.className='fmsg ok';}
+            else{m.textContent='Non è andata: riprova o scrivi a info@aglioteca.it.';m.className='fmsg err';}
+          }).catch(function(){m.textContent='Non è andata: riprova o scrivi a info@aglioteca.it.';m.className='fmsg err';}).then(function(){b.disabled=false;});
+        });
+      })();
+      </script>
     </div>
   </section>
 </main>
