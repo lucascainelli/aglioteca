@@ -24,6 +24,7 @@
     --blood:#a82f22;
     --blood-hi:#c8392b;
     --gold:#d4aa4c;
+    --gold-hi:#ecc872;
     --line:#3a1a1a;
     --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
     --display:"Cinzel Decorative",Georgia,serif;
@@ -35,13 +36,13 @@
   body{background:var(--ink);color:var(--bone);font-family:var(--serif);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
   a{color:inherit}
   .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
-  .eyebrow{font-family:var(--cinzel);font-size:13px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  .eyebrow{font-family:var(--cinzel);font-size:17px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi);text-shadow:0 0 .6px currentColor,0 0 .6px currentColor}
 
   header{position:absolute;top:0;left:0;right:0;z-index:5;padding:30px 0}
   header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
   .logo{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;line-height:1}
   .logo span{color:var(--blood-hi)}
-  .pill{font-family:var(--cinzel);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:8px 16px;border-radius:99px}
+  .pill{font-family:var(--cinzel);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-hi);border:1px solid var(--gold);padding:8px 16px;border-radius:99px}
 
   .hero{position:relative;overflow:hidden;padding:150px 0 110px;
     background:
@@ -67,7 +68,7 @@
   h2 em{font-style:normal;color:var(--gold)}
 
   .about{background:var(--paper);color:var(--paper-ink)}
-  .about .eyebrow{color:var(--blood)}
+  .about .eyebrow{color:#8c2018}
   .about .two{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
   .about h2{margin-top:14px}
   .about h2 em{color:var(--blood)}
@@ -93,7 +94,7 @@
   .signup{text-align:center;background:radial-gradient(50% 80% at 50% 100%,rgba(110,18,22,.45),transparent 70%),var(--ink)}
   .signup .lead{margin:16px auto 0}
   .signform{margin:36px auto 0;max-width:460px;text-align:left;font-family:var(--sans)}
-  .signform label{display:block;font-family:var(--cinzel);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+  .signform label{display:block;font-family:var(--cinzel);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-hi);margin-bottom:10px}
   .signform input[type=email]{width:100%;box-sizing:border-box;background:transparent;border:1px solid var(--gold);color:var(--bone);font:inherit;font-size:16px;padding:14px 16px;border-radius:2px}
   .signform input[type=email]:focus{outline:2px solid var(--blood-hi);outline-offset:2px}
   .signform .hp{position:absolute;left:-9999px;opacity:0}
@@ -117,6 +118,7 @@
     body{font-size:17px}
     header{padding:22px 0}
     .logo{font-size:21px}
+    .eyebrow{font-size:15px;letter-spacing:.16em}
     .pill{font-size:10px;padding:6px 10px;white-space:nowrap;letter-spacing:.08em}
     .hero{padding:110px 0 64px}
     .hero .wrap,.about .two,.steps{grid-template-columns:1fr}
