@@ -92,15 +92,8 @@
 
   .signup{text-align:center;background:radial-gradient(50% 80% at 50% 100%,rgba(110,18,22,.45),transparent 70%),var(--ink)}
   .signup .lead{margin:16px auto 0}
-  form{margin:36px auto 0;display:flex;gap:0;flex-wrap:wrap;max-width:560px;justify-content:center}
-  input[type=email]{flex:1 1 260px;padding:16px 18px;background:var(--ink-2);color:var(--bone);border:1px solid var(--line);border-right:0;font:inherit;font-size:17px;border-radius:0}
-  input[type=email]:focus{outline:2px solid var(--gold);outline-offset:1px}
-  form .btn{margin-top:0}
-  .consent{flex-basis:100%;display:flex;gap:10px;align-items:flex-start;text-align:left;margin-top:16px;font-family:var(--sans);font-size:13px;color:var(--bone-dim);line-height:1.5}
-  .consent input{margin-top:3px;accent-color:var(--blood)}
-  .consent a{color:var(--bone)}
-  .msg{flex-basis:100%;margin-top:12px;font-family:var(--sans);font-size:14px;color:var(--gold);min-height:1.4em}
-  .hp{position:absolute;left:-9999px}
+  .formwrap{margin:36px auto 0;max-width:560px;border:1px solid var(--line);background:#fff}
+  .formwrap iframe{display:block;width:100%;height:430px;border:0}
 
   footer{padding:36px 0 52px;border-top:1px solid var(--line);font-family:var(--sans);font-size:13px;color:var(--bone-dim)}
   footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -215,18 +208,7 @@
       <p class="eyebrow">1 gennaio 2027</p>
       <h2 style="margin-top:14px">Ti avvisiamo <em>noi.</em></h2>
       <p class="lead">Una mail all'apertura, poche altre fino ad allora. Niente di più.</p>
-
-      <!-- TODO: collegare a Brevo. Sostituire action con l'URL del modulo Brevo e verificare il nome del campo email. -->
-      <form id="f" action="BREVO_FORM_URL" method="post" novalidate>
-        <label class="hp" aria-hidden="true">Non compilare <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-        <input type="email" name="EMAIL" placeholder="la tua email" required aria-label="Email" autocomplete="email">
-        <button class="btn" type="submit">Iscrivimi</button>
-        <label class="consent">
-          <input type="checkbox" name="consenso" required>
-          <span>Acconsento a ricevere comunicazioni su Aglioteca. Informativa: <a href="/privacy.html">privacy</a>.</span>
-        </label>
-        <p class="msg" id="msg" role="status" aria-live="polite"></p>
-      </form>
+      <div class="formwrap"><iframe src="https://87c3c96e.sibforms.com/serve/MUIFANfQ7IEQFjxwBNiB3rtA8Vz3UjwYcQRFWRrLbbpHwcTEuxrPdcQU20frMWi-u5SefKS1lgFts7umMHgzQNijFoZcfHNvm_FkVdF_nWHXPJxUVEFLKorgvvo03xsyOatx-Sa4-id2Tmk1kn-L9vyq1lrSNOWG39cBC3xJYQ716dLVuQIvtudlJ4k4XFAFK3X8PMkZmRJECDaGlQ==" title="Iscrizione ad Aglioteca" loading="lazy" frameborder="0" scrolling="auto" allowfullscreen></iframe></div>
     </div>
   </section>
 </main>
@@ -238,20 +220,5 @@
   </div>
 </footer>
 
-<script>
-  var f=document.getElementById('f'),m=document.getElementById('msg');
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    var em=f.EMAIL.value.trim();
-    if(f.website.value) return;
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){m.textContent='Controlla l\'indirizzo email.';return}
-    if(!f.consenso.checked){m.textContent='Serve il consenso per iscriverti.';return}
-    if(f.action.indexOf('BREVO_FORM_URL')>-1){m.textContent='Modulo non ancora collegato.';return}
-    m.textContent='Invio…';
-    fetch(f.action,{method:'POST',body:new FormData(f),mode:'no-cors'})
-      .then(function(){f.reset();m.textContent='Fatto. Ti scriviamo all\'apertura.'})
-      .catch(function(){m.textContent='Errore. Riprova tra poco.'});
-  });
-</script>
 </body>
 </html>
