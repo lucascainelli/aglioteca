@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La vetrina — Aglioteca</title>
+<meta name="description" content="L'Aglioteca apre il primo gennaio. Scegli fino a tre confezioni che vorresti veder arrivare a casa tua e lascia la tua email.">
+<meta property="og:title" content="La vetrina dell'Aglioteca">
+<meta property="og:description" content="Scegli fino a tre confezioni che vorresti veder arrivare a casa tua. Si apre il 1 gennaio 2027.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://aglioteca.it/vetrina.html">
+<link rel="canonical" href="https://aglioteca.it/vetrina.html">
+<style>
+  @font-face{font-family:"Cinzel Decorative";font-weight:700;font-display:swap;src:url(fonts/cinzel-decorative-700.woff2) format("woff2")}
+  @font-face{font-family:"Cinzel";font-weight:400;font-display:swap;src:url(fonts/cinzel-400.woff2) format("woff2")}
+  :root{
+    --ink:#0c0405;--ink-2:#1a0709;--bone:#f6f0e6;--bone-dim:#b8ad9b;
+    --blood:#a82f22;--blood-hi:#c8392b;--gold:#d4aa4c;--gold-hi:#ecc872;--line:#3a1a1a;
+    --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+    --display:"Cinzel Decorative",Georgia,serif;
+    --cinzel:"Cinzel",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--ink);color:var(--bone);font-family:var(--serif);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 28px}
+  .eyebrow{font-family:var(--cinzel);font-size:17px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-hi);text-shadow:0 0 .6px currentColor,0 0 .6px currentColor}
+
+  header{position:absolute;top:0;left:0;right:0;z-index:5;padding:30px 0}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .logo{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;line-height:1}
+  .logo span{color:var(--blood-hi)}
+  .pill{font-family:var(--cinzel);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-hi);border:1px solid var(--gold);padding:8px 16px;border-radius:99px}
+
+  .hero{position:relative;overflow:hidden;padding:150px 0 70px;text-align:center;
+    background:radial-gradient(60% 80% at 50% 40%,rgba(110,18,22,.5),transparent 70%),var(--ink)}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,58px);line-height:1.14;margin:20px 0 24px}
+  h1 em{font-style:normal;color:var(--blood-hi)}
+  .lead{max-width:32em;margin:0 auto;color:var(--bone-dim);font-size:20px}
+  .diamond{display:flex;align-items:center;gap:12px;margin:32px auto 0;max-width:260px}
+  .diamond::before,.diamond::after{content:"";flex:1;height:1px;background:var(--gold);opacity:.6}
+  .diamond i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex:none}
+  .steps{list-style:none;display:flex;justify-content:center;gap:36px;flex-wrap:wrap;margin-top:30px;font-family:var(--cinzel);font-size:15px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-hi)}
+  .steps b{font-family:var(--display);font-size:22px;color:var(--blood-hi);margin-right:10px}
+
+  .shelf{padding:30px 0 70px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{position:relative;display:block;overflow:hidden;cursor:pointer;background:var(--ink-2);border:1px solid var(--line);padding:30px 26px 34px;transition:border-color .25s,transform .25s,box-shadow .25s}
+  .card::before{content:"";position:absolute;right:-30px;bottom:-34px;width:190px;height:215px;background:url(aglio.png) center/contain no-repeat;opacity:.09;transform:rotate(-12deg);transition:opacity .25s;pointer-events:none}
+  .card::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.55}
+  .card:hover{border-color:var(--gold);transform:translateY(-4px)}
+  .card input{position:absolute;opacity:0;pointer-events:none}
+  .card:has(input:focus-visible){outline:2px solid var(--blood-hi);outline-offset:3px}
+  .card svg{position:relative;width:44px;height:44px;margin-bottom:20px;stroke:var(--gold);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+  .card h3{position:relative;font-family:var(--cinzel);font-weight:400;font-size:19px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3;margin-bottom:10px;padding-right:34px}
+  .card p{position:relative;color:var(--bone-dim);font-size:15.5px;line-height:1.55}
+  .tick{position:absolute;top:22px;right:22px;width:24px;height:24px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;transition:background .2s}
+  .tick::after{content:"";width:6px;height:11px;border:solid var(--bone);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px);opacity:0}
+  .card:has(input:checked){border-color:var(--gold-hi);box-shadow:0 0 0 1px var(--gold-hi),0 10px 40px rgba(168,47,34,.35);background:linear-gradient(160deg,#2a0b0e,var(--ink-2))}
+  .card:has(input:checked)::before{opacity:.18}
+  .card:has(input:checked) .tick{background:var(--blood);border-color:var(--gold-hi)}
+  .card:has(input:checked) .tick::after{opacity:1}
+  .card.off{opacity:.45;cursor:not-allowed}
+  .card.off:hover{border-color:var(--line);transform:none}
+
+  .send{text-align:center;padding:80px 0 100px;border-top:1px solid var(--line);background:radial-gradient(50% 80% at 50% 100%,rgba(110,18,22,.45),transparent 70%),var(--ink)}
+  h2{font-family:var(--display);font-weight:700;font-size:clamp(26px,3.4vw,38px);line-height:1.2;margin-top:14px}
+  h2 em{font-style:normal;color:var(--gold)}
+  .send .lead{margin-top:16px}
+  .form{margin:36px auto 0;max-width:460px;text-align:left;font-family:var(--sans)}
+  .form label.t{display:block;font-family:var(--cinzel);font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-hi);margin-bottom:10px}
+  .form input[type=email]{width:100%;background:transparent;border:1px solid var(--gold);color:var(--bone);font:inherit;font-size:16px;padding:14px 16px;border-radius:2px}
+  .form input[type=email]:focus{outline:2px solid var(--blood-hi);outline-offset:2px}
+  .hp{position:absolute;left:-9999px;opacity:0}
+  .chk{display:flex;gap:12px;align-items:flex-start;margin:16px 0 0;font-size:14px;color:var(--bone-dim)}
+  .chk input{margin-top:3px;accent-color:var(--blood-hi)}
+  .chk a{color:var(--bone);border-bottom:1px solid var(--line);text-decoration:none}
+  .btn{display:block;width:100%;margin-top:24px;padding:16px 34px;background:var(--blood);color:var(--bone);font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;border:0;cursor:pointer;transition:background .2s,transform .2s}
+  .btn:hover,.btn:focus-visible{background:var(--blood-hi);transform:translateY(-1px)}
+  .btn:disabled{opacity:.6;cursor:wait}
+  .fmsg{min-height:22px;margin-top:14px;font-size:14px;text-align:center}
+  .fmsg.ok{color:var(--gold)} .fmsg.err{color:#e5776b}
+
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(12,4,5,.94);border-top:1px solid var(--gold);padding:12px 0;transform:translateY(110%);transition:transform .3s;backdrop-filter:blur(6px)}
+  .bar.on{transform:none}
+  .bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+  .bar span{font-family:var(--cinzel);letter-spacing:.1em;text-transform:uppercase;font-size:14px;color:var(--gold-hi)}
+  .bar a{font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;background:var(--blood);padding:11px 20px}
+
+  footer{padding:36px 0 52px;border-top:1px solid var(--line);font-family:var(--sans);font-size:13px;color:var(--bone-dim)}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:720px){
+    body{font-size:17px}
+    header{padding:22px 0}
+    .logo{font-size:21px}
+    .eyebrow{font-size:15px;letter-spacing:.16em}
+    .pill{font-size:10px;padding:6px 10px;white-space:nowrap;letter-spacing:.08em}
+    .hero{padding:110px 0 44px}
+    .steps{flex-direction:column;gap:6px;align-items:center}
+    .grid{grid-template-columns:1fr}
+    .send{padding:60px 0 120px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="/">Aglio<span>teca</span></a>
+    <span class="pill">Apre il 1 gennaio 2027</span>
+  </div>
+</header>
+
+<main>
+  <form id="vf" novalidate>
+  <div class="hero">
+    <div class="wrap">
+      <p class="eyebrow">La vetrina</p>
+      <h1>Cosa vorresti <em>veder arrivare?</em></h1>
+      <p class="lead">L'Aglioteca apre il primo gennaio. Scegli fino a tre confezioni che vorresti veder arrivare a casa tua, lascia la tua email, e i vampiri ti avviseranno all'alba.</p>
+      <div class="diamond" aria-hidden="true"><i></i></div>
+      <ol class="steps">
+        <li><b>1</b>Tocca fino a tre</li>
+        <li><b>2</b>Lascia la email</li>
+        <li><b>3</b>Invia</li>
+      </ol>
+    </div>
+  </div>
+
+  <section class="shelf" aria-label="Confezioni">
+    <div class="wrap">
+      <div class="grid" id="grid">
+
+        <label class="card"><input type="checkbox" name="pick" value="abbonamento" data-n="Un aglio per volta">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 13v11l7 5"/></svg>
+          <h3>Un aglio per volta</h3>
+          <p>L'abbonamento bimestrale. Ogni due mesi un aglio italiano diverso, con la scheda che ne racconta la storia.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="scoperta" data-n="Cofanetto di scoperta">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="7" y="19" width="34" height="22"/><path d="M5 12h38v7H5zM24 12v29M24 12c-4-7-12-6-11-1 .5 3 7 1 11 1zM24 12c4-7 12-6 11-1-.5 3-7 1-11 1z"/></svg>
+          <h3>Cofanetto di scoperta</h3>
+          <p>Quattro o cinque agli di provenienze diverse, con le schede di assaggio per confrontarli.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="chilo" data-n="Il chilo fresco">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 12h16l5 7v20a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3V19z"/><path d="M16 12c1-4 15-4 16 0M18 28h12"/></svg>
+          <h3>Il chilo fresco</h3>
+          <p>Un chilo di aglio di una sola provenienza, quella di stagione. Per chi cucina davvero.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="ristoranti" data-n="Il pacco per cucine e ristoranti">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 30V20a7 7 0 0 1 3-13 8 8 0 0 1 14 0 7 7 0 0 1 3 13v10zM14 36h20v5H14z"/></svg>
+          <h3>Pacco per cucine e ristoranti</h3>
+          <p>Due o tre chili di una provenienza, con prezzo a scalare. Per chi ordina e riordina.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="nero" data-n="Aglio nero">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6C14 14 9 24 9 31a15 15 0 0 0 30 0C39 24 34 14 24 6z"/><path d="M24 40a8 8 0 0 1-8-8"/></svg>
+          <h3>Aglio nero</h3>
+          <p>In vasetto, singolo o in coppia. Dolce, morbido, quasi senza odore. Viaggia bene anche d'estate.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="regalo" data-n="Cofanetto regalo">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 20h32v21H8zM6 14h36v6H6zM24 14v27"/><path d="M24 14c-3-6-10-6-9-2 .5 2.5 6 2 9 2zM24 14c3-6 10-6 9-2-.5 2.5-6 2-9 2z"/></svg>
+          <h3>Cofanetto regalo</h3>
+          <p>Aglio fresco e aglio nero nella stessa scatola. Il regalo per chi ha già tutto, tranne questo.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="assaggio" data-n="Assaggio in formato piccolo">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="30" r="7"/><circle cx="34" cy="30" r="7"/><circle cx="24" cy="15" r="7"/></svg>
+          <h3>Assaggio in formato piccolo</h3>
+          <p>Una selezione di agli in teste piccole, per cominciare senza impegnarsi con un chilo.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="vampiri" data-n="Cofanetto Vampiri">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M32 8a16 16 0 1 0 8 26 13 13 0 0 1-8-26z"/></svg>
+          <h3>Cofanetto Vampiri</h3>
+          <p>Gli agli e il kit per una cena a tema, nello stile dell'associazione Vampiri Italiani.</p>
+        </label>
+
+        <label class="card"><input type="checkbox" name="pick" value="masterclass" data-n="Mini masterclass a casa">
+          <span class="tick" aria-hidden="true"></span>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="9" width="36" height="24" rx="2"/><path d="M18 41h12M24 33v8M21 16l8 5-8 5z"/></svg>
+          <h3>Mini masterclass a casa</h3>
+          <p>Un kit con tre o quattro agli e, una settimana dopo, una serata online per dieci persone: spiego l'aglio e si assaggia insieme.</p>
+        </label>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="send" id="invio">
+    <div class="wrap">
+      <p class="eyebrow">Ultimo passo</p>
+      <h2>Lascia la tua <em>email.</em></h2>
+      <p class="lead">Stiamo decidendo cosa mettere in vetrina. Vota fino a tre confezioni, lascia la email, e ti scriviamo il giorno dell'apertura. Niente spam, solo aglio.</p>
+      <div class="form">
+        <label class="t" for="em">Il tuo indirizzo email</label>
+        <input id="em" name="EMAIL" type="email" placeholder="nome@esempio.it" autocomplete="email" required>
+        <input type="text" name="website" class="hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="chk"><input type="checkbox" id="notify" checked><span>Avvisami quando apre. Posso cancellarmi quando voglio.</span></label>
+        <label class="chk"><input type="checkbox" id="priv" required><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e acconsento al trattamento della mia email e delle mie scelte.</span></label>
+        <button class="btn" type="submit" id="go">Invia le mie scelte</button>
+        <p class="fmsg" id="fmsg" role="status" aria-live="polite"></p>
+        <p class="chk" style="justify-content:center;font-size:12px">Una sola scelta per email. Ancora nessuna vendita: si apre il 1 gennaio 2027.</p>
+      </div>
+    </div>
+  </section>
+  </form>
+</main>
+
+<div class="bar" id="bar" aria-hidden="true">
+  <div class="wrap"><span id="cnt">0 di 3 scelte</span><a href="#invio">Vai all'invio</a></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Aglioteca · Il negozio apre il 1 gennaio 2027: fino ad allora non si vende nulla.</span>
+    <span><a href="/privacy.html">Privacy</a> · <a href="mailto:info@aglioteca.it">info@aglioteca.it</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var MAX=3;
+  /* URL dell'app web di Apps Script collegata al foglio "Aglioteca - Voti vetrina" */
+  var VOTI_URL="INCOLLA_QUI_URL_APPS_SCRIPT";
+  /* Stesso modulo Brevo della landing: serve solo se si spunta "Avvisami" */
+  var BREVO_URL="https://87c3c96e.sibforms.com/serve/MUIFANfQ7IEQFjxwBNiB3rtA8Vz3UjwYcQRFWRrLbbpHwcTEuxrPdcQU20frMWi-u5SefKS1lgFts7umMHgzQNijFoZcfHNvm_FkVdF_nWHXPJxUVEFLKorgvvo03xsyOatx-Sa4-id2Tmk1kn-L9vyq1lrSNOWG39cBC3xJYQ716dLVuQIvtudlJ4k4XFAFK3X8PMkZmRJECDaGlQ==?isAjax=1";
+
+  var f=document.getElementById('vf'),m=document.getElementById('fmsg'),go=document.getElementById('go'),
+      bar=document.getElementById('bar'),cnt=document.getElementById('cnt'),
+      boxes=[].slice.call(f.querySelectorAll('input[name=pick]'));
+
+  function refresh(){
+    var n=boxes.filter(function(b){return b.checked}).length;
+    boxes.forEach(function(b){b.closest('.card').classList.toggle('off',!b.checked&&n>=MAX)});
+    cnt.textContent=n+' di '+MAX+(n===1?' scelta':' scelte');
+    bar.classList.toggle('on',n>0);
+  }
+  boxes.forEach(function(b){b.addEventListener('change',function(){
+    var n=boxes.filter(function(x){return x.checked}).length;
+    if(n>MAX){b.checked=false;m.textContent='Al massimo tre scelte.';m.className='fmsg err';}
+    else if(m.className==='fmsg err')say('');
+    refresh();
+  })});
+
+  function say(t,c){m.textContent=t;m.className='fmsg '+(c||'')}
+
+  f.addEventListener('submit',function(e){
+    e.preventDefault(); say('');
+    var picks=boxes.filter(function(b){return b.checked}).map(function(b){return b.value});
+    var names=boxes.filter(function(b){return b.checked}).map(function(b){return b.dataset.n});
+    var em=f.EMAIL.value.trim();
+    if(!picks.length){say('Scegli almeno una confezione.','err');return;}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){say('Controlla l\'indirizzo email.','err');return;}
+    if(!document.getElementById('priv').checked){say('Serve il consenso per inviare.','err');return;}
+    if(VOTI_URL.indexOf('http')!==0){say('Il modulo non è ancora attivo. Riprova tra poco.','err');return;}
+    var notify=document.getElementById('notify').checked;
+    go.disabled=true;
+    fetch(VOTI_URL,{method:'POST',body:JSON.stringify({email:em,picks:picks,names:names,notify:notify,website:f.website.value})})
+      .then(function(r){return r.json()})
+      .then(function(d){
+        if(d&&d.ok){
+          if(notify){
+            var fd=new FormData();fd.append('EMAIL',em);fd.append('OPT_IN','1');fd.append('locale','it');fd.append('email_address_check','');
+            fetch(BREVO_URL,{method:'POST',body:fd}).catch(function(){});
+          }
+          boxes.forEach(function(b){b.checked=false});f.reset();refresh();
+          say(notify?'Fatto. Grazie! Conferma l\'iscrizione dal link nella mail che ti arriva (controlla anche lo spam).':'Fatto. Grazie, le tue scelte sono arrivate.','ok');
+        }else if(d&&d.error==='duplicate'){say('Questa email ha già inviato le sue scelte. Una sola volta, per tenere pulito il conto.','err');}
+        else{say('Non è andata: riprova o scrivi a info@aglioteca.it.','err');}
+      })
+      .catch(function(){say('Non è andata: riprova o scrivi a info@aglioteca.it.','err');})
+      .then(function(){go.disabled=false;});
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>
