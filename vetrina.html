@@ -76,6 +76,7 @@
   .hp{position:absolute;left:-9999px;opacity:0}
   .chk{display:flex;gap:12px;align-items:flex-start;margin:16px 0 0;font-size:14px;color:var(--bone-dim)}
   .chk input{margin-top:3px;accent-color:var(--blood-hi)}
+  .chk strong{color:var(--bone);font-weight:normal}
   .chk a{color:var(--bone);border-bottom:1px solid var(--line);text-decoration:none}
   .btn{display:block;width:100%;margin-top:24px;padding:16px 34px;background:var(--blood);color:var(--bone);font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;border:0;cursor:pointer;transition:background .2s,transform .2s}
   .btn:hover,.btn:focus-visible{background:var(--blood-hi);transform:translateY(-1px)}
@@ -213,7 +214,7 @@
         <label class="t" for="em">Il tuo indirizzo email</label>
         <input id="em" name="EMAIL" type="email" placeholder="nome@esempio.it" autocomplete="email" required>
         <input type="text" name="website" class="hp" value="" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <label class="chk"><input type="checkbox" id="notify" checked><span>Avvisami quando apre. Posso cancellarmi quando voglio.</span></label>
+        <label class="chk"><input type="checkbox" id="notify" checked><span>Avvisami quando apre. Ti arriva una mail di conferma: <strong>clicca il link e controlla anche lo spam</strong>, altrimenti non risulti iscritto. Puoi cancellarti quando vuoi.</span></label>
         <label class="chk"><input type="checkbox" id="priv" required><span>Ho letto l'<a href="privacy.html">informativa privacy</a> e acconsento al trattamento della mia email e delle mie scelte.</span></label>
         <button class="btn" type="submit" id="go">Invia le mie scelte</button>
         <p class="fmsg" id="fmsg" role="status" aria-live="polite"></p>
@@ -282,7 +283,7 @@
             fetch(BREVO_URL,{method:'POST',body:fd}).catch(function(){});
           }
           boxes.forEach(function(b){b.checked=false});f.reset();refresh();
-          say(notify?'Fatto. Grazie! Conferma l\'iscrizione dal link nella mail che ti arriva (controlla anche lo spam).':'Fatto. Grazie, le tue scelte sono arrivate.','ok');
+          say(notify?'Fatto, grazie! Ultimo passo: apri la mail di conferma e clicca il link, altrimenti non risulti iscritto. Se non la vedi, controlla lo spam.':'Fatto. Grazie, le tue scelte sono arrivate.','ok');
         }else if(d&&d.error==='duplicate'){say('Questa email ha già inviato le sue scelte. Una sola volta, per tenere pulito il conto.','err');}
         else{say('Non è andata: riprova o scrivi a info@aglioteca.it.','err');}
       })
