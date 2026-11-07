@@ -58,6 +58,9 @@
   .diamond i{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);flex:none}
   .btn{display:inline-block;margin-top:28px;padding:16px 34px;background:var(--blood);color:var(--bone);font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer;transition:background .2s,transform .2s}
   .btn:hover,.btn:focus-visible{background:var(--blood-hi);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;border:1px solid var(--gold);color:var(--gold-hi);margin-left:12px;padding:15px 28px}
+  .btn.ghost:hover,.btn.ghost:focus-visible{background:rgba(212,170,76,.12)}
+  @media(max-width:720px){.btn.ghost{margin-left:0}}
   .bulb{width:100%;max-width:280px;height:auto;justify-self:center;filter:drop-shadow(0 30px 40px rgba(0,0,0,.6));transform:rotate(-6deg)}
 
   .rule{display:flex;align-items:center;gap:18px;color:var(--gold);justify-content:center;padding:6px 0}
@@ -150,6 +153,7 @@
         <p class="lead">Agli rari, stagionali e assaggiati, consegnati a casa con la loro storia.</p>
         <div class="diamond" aria-hidden="true"><i></i></div>
         <a class="btn" href="#avviso">Avvisami all'apertura</a>
+        <a class="btn ghost" href="vetrina.html">Vota la vetrina</a>
       </div>
       <img class="bulb" src="aglio.png" alt="Una testa d'aglio" width="600" height="678">
     </div>
